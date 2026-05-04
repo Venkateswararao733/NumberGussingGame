@@ -15,8 +15,9 @@ def home():
     if request.method == "POST":
         guess = int(request.form.get("guess"))
         session["attempts"] += 1
-
-        if guess < session["number"]:
+        if guess < 0 or guess > 100:
+            message = "Please Enter a Number Between 1 and 100"
+        elif guess < session["number"]:
             message = "Too low!"
         elif guess > session["number"]:
             message = "Too high!"
